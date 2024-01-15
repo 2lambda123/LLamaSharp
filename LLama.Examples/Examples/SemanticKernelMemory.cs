@@ -184,9 +184,9 @@ private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
             await SearchMemoryAsync(memory, "Jupyter notebook describing how to pass prompts from a file to a semantic skill or function");
         }
 
-        private static async Task SearchMemoryAsync(ISemanticTextMemory memory, string query, ILogger logger)
+        private static async Task SearchMemoryAsync(ISemanticTextMemory memory, string query, ILogger logger
         {
-            Console.WriteLine("\nQuery: " + query + "\n");
+            logger.LogInformation($"\nQuery: {query}\n");
 
             var memories = memory.SearchAsync(MemoryCollectionName, query, limit: 10, minRelevanceScore: 0.5);
 
