@@ -49,9 +49,9 @@ namespace LLama.Examples.Examples
             await RunExampleAsync(memory);
         }
 
-        private static async Task RunExampleAsync(ISemanticTextMemory memory)
+        private static async Task RunExampleAsync(ISemanticTextMemory memory, ILogger logger)
         {
-            await StoreMemoryAsync(memory);
+            await StoreMemoryAsync(memory, logger);
 
             await SearchMemoryAsync(memory, "How do I get started?");
 
@@ -97,7 +97,7 @@ namespace LLama.Examples.Examples
             await SearchMemoryAsync(memory, "Jupyter notebook");
 
             await SearchMemoryAsync(memory, "README: README associated with a sample chat summary react-based webapp");
-private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
+private static async Task StoreMemoryAsync(ISemanticTextMemory memory, ILogger logger)
 {
     /* Store some data in the semantic memory.
      *
@@ -184,7 +184,7 @@ private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
             await SearchMemoryAsync(memory, "Jupyter notebook describing how to pass prompts from a file to a semantic skill or function");
         }
 
-        private static async Task SearchMemoryAsync(ISemanticTextMemory memory, string query)
+        private static async Task SearchMemoryAsync(ISemanticTextMemory memory, string query, ILogger logger)
         {
             Console.WriteLine("\nQuery: " + query + "\n");
 
@@ -203,7 +203,7 @@ private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
             Console.WriteLine("----------------------");
         }
 
-        private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
+        private static async Task StoreMemoryAsync(ISemanticTextMemory memory, ILogger logger)
         {
             /* Store some data in the semantic memory.
              *
