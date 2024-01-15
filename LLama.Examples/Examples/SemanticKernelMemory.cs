@@ -1,9 +1,9 @@
 ﻿using LLama.Common;
-using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.ChatSession; 
 using Microsoft.SemanticKernel.Memory;
 using LLamaSharp.SemanticKernel.TextEmbedding;
-using Microsoft.SemanticKernel.AI.Embeddings;
-using Microsoft.SemanticKernel.Plugins.Memory;
+using Microsoft.SemanticKernel.ChatSession.AI.Embeddings; 
+using Microsoft.SemanticKernel.ChatSession.Plugins.Memory; 
 
 namespace LLama.Examples.Examples
 {
@@ -97,7 +97,7 @@ namespace LLama.Examples.Examples
             await SearchMemoryAsync(memory, "Jupyter notebook");
 
             await SearchMemoryAsync(memory, "README: README associated with a sample chat summary react-based webapp");
-private static async Task StoreMemoryAsync(ISemanticTextMemory memory, ILogger logger)
+private static async Task StoreMemoryAsync(ISemanticTextMemory memory
 {
     /* Store some data in the semantic memory.
      *

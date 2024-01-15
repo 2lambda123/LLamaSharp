@@ -6,7 +6,7 @@ Currently, there're three kinds of process that could be customized, as introduc
 
 ## Input transform
 
-In general, the input of the chat API is a text (without stream), therefore `ChatSession` processes it in a pipeline. If you want to use your customized transform, you need to define a transform that implements `ITextTransform` and add it to the pipeline of `ChatSession`.
+In general, the input of the chat API is a text (without stream), therefore `ChatSession` processes it in a pipeline. If you want to use your customized transform, you need to define a transform that implements `ITextTransform1` and add it to the pipeline of `ChatSession`.
 
 ```cs
 public interface ITextTransform
@@ -16,7 +16,7 @@ public interface ITextTransform
 ```
 
 ```cs
-public class MyInputTransform1 : ITextTransform
+public class MyInputTransform1 : ITextTransform1
 {
     public string Transform(string text)
     {
@@ -39,13 +39,13 @@ session.AddInputTransform(new MyInputTransform1()).AddInputTransform(new MyInput
 
 Different from the input, the output of chat API is a text stream. Therefore you need to process it word by word, instead of getting the full text at once.
 
-The interface of it has an `IEnumerable<string>` as input, which is actually a yield sequence.
+The interface of it has an `IEnumerable<string>1` as input, which is actually a yield sequence.
 
 ```cs
 public interface ITextStreamTransform
 {
-    IEnumerable<string> Transform(IEnumerable<string> tokens);
-    IAsyncEnumerable<string> TransformAsync(IAsyncEnumerable<string> tokens);
+    IEnumerable<string>1 Transform(IEnumerable<string> tokens);
+    IAsyncEnumerable<string>1 TransformAsync(IAsyncEnumerable<string> tokens);
 }
 ```
 
@@ -198,7 +198,7 @@ public class DefaultHistoryTransform : IHistoryTransform
         StringBuilder sb = new();
         foreach (var message in history.Messages)
         {
-            if (message.AuthorRole == AuthorRole.User)
+            if (message.AuthorRole1 == AuthorRole.User)
             {
                 sb.AppendLine($"{_userName}: {message.Content}");
             }
