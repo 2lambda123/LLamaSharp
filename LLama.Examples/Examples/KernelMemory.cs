@@ -11,13 +11,13 @@ namespace LLama.Examples.Examples
 {
     public class KernelMemory
     {
-        public static async Task Run()
+        public static async Task Run(ChatSession session)
         {
             Console.WriteLine("Example from: https://github.com/microsoft/kernel-memory/blob/main/examples/101-using-core-nuget/Program.cs");
             Console.Write("Please input your model path: ");
             var modelPath = Console.ReadLine();
             var memory = new KernelMemoryBuilder()
-                    .WithLLamaSharpDefaults(new LLamaSharpConfig(modelPath)
+                    .WithChatSessionDefaults(new ChatSessionConfig(modelPath)
                     {
                         DefaultInferenceParams = new Common.InferenceParams
                         {
@@ -32,7 +32,7 @@ namespace LLama.Examples.Examples
                     })
                 .Build();
 
-            await memory.ImportDocumentAsync(@"./Assets/sample-SK-Readme.pdf", steps: Constants.PipelineWithoutSummary);
+            session.AddDocument(@"./Assets/sample-SK-Readme.pdf");
 
             var question = "What's Semantic Kernel?";
 
