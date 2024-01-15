@@ -25,7 +25,6 @@ namespace LLama.Examples.Examples
                 Seed = seed,
                 EmbeddingMode = true
             };
-
             using var model = LLamaWeights.LoadFromFile(parameters);
             var embedding = new LLamaEmbedder(model, parameters);
 
@@ -63,6 +62,13 @@ namespace LLama.Examples.Examples
 
             Result 1:
               URL:     : https://github.com/microsoft/semantic-kernel/blob/main/README.md
+            /*
+            Output:
+
+            Query: How do I get started?
+
+            Result 1:
+              URL:     : https://github.com/microsoft/semantic-kernel/blob/main/README.md
               Title    : README: Installation, getting started, and how to contribute
 
             Result 2:
@@ -91,7 +97,90 @@ namespace LLama.Examples.Examples
             await SearchMemoryAsync(memory, "Jupyter notebook");
 
             await SearchMemoryAsync(memory, "README: README associated with a sample chat summary react-based webapp");
+private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
+{
+    /* Store some data in the semantic memory.
+     *
+     * When using Azure Cognitive Search the data is automatically indexed on write.
+     *
+     * When using the combination of VolatileStore and Embedding generation, SK takes
+     * care of creating and storing the index
+     */
 
+    Console.WriteLine("\nAdding some GitHub file URLs and their descriptions to the semantic memory.");
+    var githubFiles = SampleData();
+    var i = 0;
+    foreach (var entry in githubFiles)
+    {
+        var result = await memory.SaveReferenceAsync(
+            collection: MemoryCollectionName,
+            externalSourceName: "GitHub",
+            externalId: entry.Key,
+            description: entry.Value,
+            text: entry.Value);
+
+        Console.WriteLine($"#{++i} saved.");
+        Console.WriteLine(result);
+    }
+
+    Console.WriteLine("\n----------------------");
+}
+private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
+{
+    /* Store some data in the semantic memory.
+     *
+     * When using Azure Cognitive Search the data is automatically indexed on write.
+     *
+     * When using the combination of VolatileStore and Embedding generation, SK takes
+     * care of creating and storing the index
+     */
+
+    Console.WriteLine("\nAdding some GitHub file URLs and their descriptions to the semantic memory.");
+    var githubFiles = SampleData();
+    var i = 0;
+    foreach (var entry in githubFiles)
+    {
+        var result = await memory.SaveReferenceAsync(
+            collection: MemoryCollectionName,
+            externalSourceName: "GitHub",
+            externalId: entry.Key,
+            description: entry.Value,
+            text: entry.Value);
+
+        Console.WriteLine($"#{++i} saved.");
+        Console.WriteLine(result);
+    }
+
+    Console.WriteLine("\n----------------------");
+}
+private static async Task StoreMemoryAsync(ISemanticTextMemory memory)
+{
+    /* Store some data in the semantic memory.
+     *
+     * When using Azure Cognitive Search the data is automatically indexed on write.
+     *
+     * When using the combination of VolatileStore and Embedding generation, SK takes
+     * care of creating and storing the index
+     */
+
+    Console.WriteLine("\nAdding some GitHub file URLs and their descriptions to the semantic memory.");
+    var githubFiles = SampleData();
+    var i = 0;
+    foreach (var entry in githubFiles)
+    {
+        var result = await memory.SaveReferenceAsync(
+            collection: MemoryCollectionName,
+            externalSourceName: "GitHub",
+            externalId: entry.Key,
+            description: entry.Value,
+            text: entry.Value);
+
+        Console.WriteLine($"#{++i} saved.");
+        Console.WriteLine(result);
+    }
+
+    Console.WriteLine("\n----------------------");
+}
             await SearchMemoryAsync(memory, "Jupyter notebook describing how to pass prompts from a file to a semantic skill or function");
         }
 
